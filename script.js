@@ -30,14 +30,4 @@
     });
   }
 
-  // Optional: simple form handling (no submit to server by default)
-  var form = document.querySelector('.quote-form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      // Replace with your backend endpoint or mailto/form service
-      var msg = 'Grazie per la richiesta. Per inviare davvero il preventivo, collega il form a un backend o a un servizio come Formspree.';
-      alert(msg);
-    });
-  }
 })();
