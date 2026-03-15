@@ -149,15 +149,19 @@ a:hover {
 
 .nav {
   position: fixed;
-  top: 52px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 90;
   background: var(--color-bg);
   padding: var(--space-xl);
+  padding-top: calc(52px + var(--space-md));
   transform: translateX(100%);
   transition: transform 0.3s ease;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  visibility: visible;
 }
 .nav.is-open {
   transform: translateX(0);
@@ -172,10 +176,15 @@ a:hover {
   gap: var(--space-md);
   padding-top: var(--space-xl);
 }
+.nav__list li {
+  display: block;
+}
 .nav__list a {
+  display: block;
   font-size: 1.125rem;
   font-weight: 500;
   color: var(--color-text);
+  padding: var(--space-sm) 0;
 }
 .nav__list a:hover {
   color: var(--color-accent);
@@ -688,19 +697,31 @@ a:hover {
     display: none;
   }
   .nav {
-    position: static;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    height: auto;
     transform: none;
     background: none;
-    padding: 0;
+    padding: var(--space-md) var(--space-xl) var(--space-md) 0;
     overflow: visible;
+    z-index: 101;
   }
   .nav__list {
     flex-direction: row;
     gap: var(--space-lg);
     padding-top: 0;
+    align-items: center;
+  }
+  .nav__list li {
+    display: inline-block;
   }
   .nav__list a {
     font-size: 0.9375rem;
+    padding: var(--space-md) 0;
   }
   .header__inner {
     padding: var(--space-md) var(--space-lg);
