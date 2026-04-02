@@ -2,20 +2,23 @@
    L'Elettricista di Rocco Tammone — Mobile-first
    ============================================ */
 
-/* Palette inspired by logo: deep blue, medium blue, bright yellow, white */
+/* Logo neutrals + copper; primary = sober electric blue (industry / impianti) */
 :root {
-  --color-bg: #0d1b4a;
-  --color-surface: #1a2d5c;
-  --color-surface-alt: #243b66;
-  --color-text: #f0f4f8;
-  --color-text-muted: #94a3b8;
-  --color-accent: #facc15;
-  --color-accent-dim: #eab308;
-  --color-border: #2c5282;
-  --color-red-accent: #dc2626;
-  --color-green-accent: #16a34a;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --font-display: 'Playfair Display', Georgia, serif;
+  --color-bg: #ffffff;
+  --color-surface: #f5f6f7;
+  --color-surface-alt: #eef0f2;
+  --color-text: #111111;
+  --color-text-muted: #4a5568;
+  --color-accent: #2c5282;
+  --color-accent-dim: #1e3a5f;
+  --color-accent-soft: #4a6fa5;
+  --color-accent-green: #2d6a4f;
+  --color-accent-green-dim: #1b4332;
+  --color-copper: #9c5c2e;
+  --color-border: #d1d3d4;
+  --color-on-accent: #ffffff;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'IBM Plex Sans', system-ui, sans-serif;
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -69,9 +72,10 @@ a:hover {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(13, 27, 74, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
 }
 
 .header__inner {
@@ -86,36 +90,24 @@ a:hover {
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--color-text);
   text-decoration: none;
-  max-width: 70%;
+  max-width: min(240px, 78vw);
 }
 .logo:hover {
-  color: var(--color-accent);
+  opacity: 0.92;
 }
 .logo__img {
-  width: 48px;
-  height: 48px;
+  width: auto;
+  max-width: 100%;
+  height: 44px;
   object-fit: contain;
-  border-radius: 50%;
+  object-position: left center;
+  border-radius: 0;
   flex-shrink: 0;
 }
-.logo__text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-@media (max-width: 480px) {
-  .logo__text {
-    display: none;
-  }
+@media (min-width: 640px) {
   .logo__img {
-    width: 44px;
-    height: 44px;
+    height: 48px;
   }
 }
 
@@ -205,7 +197,8 @@ a:hover {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(250, 204, 21, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 85% 55% at 75% 15%, rgba(44, 82, 130, 0.07) 0%, transparent 52%),
+    radial-gradient(ellipse 60% 45% at 15% 85%, rgba(30, 58, 95, 0.05) 0%, transparent 48%),
     linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
   pointer-events: none;
 }
@@ -271,7 +264,12 @@ a:hover {
   height: auto;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 40px rgba(17, 17, 17, 0.08);
+}
+.hero__img--logo {
+  max-width: 100%;
+  background: var(--color-bg);
+  padding: var(--space-md);
 }
 
 .hero__tag {
@@ -282,13 +280,23 @@ a:hover {
   margin: 0 0 var(--space-sm);
 }
 
+.brand-name {
+  display: block;
+}
+.brand-name__line {
+  display: block;
+}
+
 .hero__title {
   font-family: var(--font-sans);
   font-size: clamp(1.75rem, 5vw, 2.75rem);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   margin: 0 0 var(--space-md);
   color: var(--color-text);
+}
+.hero__title .brand-name {
+  line-height: 1.12;
 }
 
 .hero__subtitle {
@@ -319,7 +327,7 @@ a:hover {
 .hero__scroll-line {
   width: 1px;
   height: 32px;
-  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  background: linear-gradient(to bottom, var(--color-accent-soft), transparent);
   border-radius: 1px;
   animation: scrollHint 2s ease-in-out infinite;
 }
@@ -344,18 +352,18 @@ a:hover {
 }
 .btn--primary {
   background: var(--color-accent);
-  color: #0d1b4a;
+  color: var(--color-on-accent);
   border-color: var(--color-accent);
 }
 .btn--primary:hover {
   background: var(--color-accent-dim);
   border-color: var(--color-accent-dim);
-  color: #0d1b4a;
+  color: var(--color-on-accent);
 }
 .btn--outline {
   background: transparent;
   color: var(--color-text);
-  border-color: var(--color-border);
+  border-color: var(--color-text);
 }
 .btn--outline:hover {
   border-color: var(--color-accent);
@@ -424,8 +432,8 @@ a:hover {
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 .card:hover {
-  border-color: rgba(250, 204, 21, 0.4);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  border-color: rgba(44, 82, 130, 0.35);
+  box-shadow: 0 8px 28px rgba(30, 58, 95, 0.08);
 }
 
 .card__icon {
@@ -486,7 +494,7 @@ a:hover {
   height: auto;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.08);
 }
 
 .history__lead {
@@ -512,12 +520,14 @@ a:hover {
   background: var(--color-bg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
   text-align: center;
 }
 .history__years {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 3rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--color-accent);
   line-height: 1;
   display: block;
@@ -553,8 +563,9 @@ a:hover {
 .mention {
   margin: 0;
   padding: var(--space-lg);
-  background: var(--color-surface);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-copper);
   border-radius: var(--radius-lg);
 }
 .mention__text {
@@ -609,6 +620,7 @@ a:hover {
 .quote-form__row textarea:focus {
   outline: none;
   border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.18);
 }
 .quote-form__row--full {
   grid-column: 1 / -1;
@@ -639,6 +651,17 @@ a:hover {
   font-weight: 500;
 }
 
+.contacts__img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin-top: var(--space-lg);
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+}
+
 .contacts__map {
   margin-top: var(--space-2xl);
   grid-column: 1 / -1;
@@ -667,28 +690,23 @@ a:hover {
   height: 100%;
   border: 0;
 }
-.contacts__map-link {
-  margin: var(--space-sm) 0 0;
-  font-size: 0.875rem;
-}
-.contacts__map-link a {
-  color: var(--color-text-muted);
-}
-.contacts__map-link a:hover {
-  color: var(--color-accent);
-}
-
 /* ----- Footer ----- */
 .footer {
   padding: var(--space-lg) 0;
-  border-top: 1px solid var(--color-border);
-  background: var(--color-surface);
+  border-top: 3px solid var(--color-copper);
+  background: #111111;
 }
 .footer__copy {
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  color: #c8c8c8;
   margin: 0;
   text-align: center;
+}
+.footer a {
+  color: #93c5fd;
+}
+.footer a:hover {
+  color: #ffffff;
 }
 
 /* ========== Tablet and up ========== */
