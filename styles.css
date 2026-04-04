@@ -198,32 +198,50 @@ a:hover {
   inset: 0;
   z-index: 0;
   background-color: var(--color-surface);
+  /* Left: foto visibile; destra: velatura bianca per il pannello */
   background-image:
     linear-gradient(
       105deg,
-      rgba(255, 255, 255, 0.97) 0%,
-      rgba(255, 255, 255, 0.9) 38%,
-      rgba(255, 255, 255, 0.55) 58%,
-      rgba(245, 246, 247, 0.35) 100%
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.22) 22%,
+      rgba(255, 255, 255, 0.55) 42%,
+      rgba(255, 255, 255, 0.92) 62%,
+      rgba(255, 255, 255, 1) 82%
     ),
     url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
   background-size: cover, cover;
-  background-position: center, center right;
+  background-position: center, left center;
   background-repeat: no-repeat;
   pointer-events: none;
 }
 
 @media (max-width: 639px) {
   .hero__bg {
-    background-position: center, center center;
+    background-position: center, left center;
     background-image:
       linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.96) 0%,
-        rgba(255, 255, 255, 0.88) 35%,
-        rgba(255, 255, 255, 0.72) 100%
+        95deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.4) 38%,
+        rgba(255, 255, 255, 0.94) 78%,
+        rgba(255, 255, 255, 1) 100%
       ),
       url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
+  }
+  .hero {
+    overflow: visible;
+  }
+  .hero__inner {
+    overflow: visible;
+  }
+  .hero__content {
+    padding: var(--space-md) var(--space-lg);
+    overflow: visible;
+  }
+  .hero__panel-brand {
+    top: -22px;
+    right: var(--space-md);
+    filter: drop-shadow(0 2px 8px rgba(17, 17, 17, 0.12));
   }
 }
 
@@ -232,6 +250,7 @@ a:hover {
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: var(--space-xl);
   max-width: 1200px;
   margin: 0 auto;
@@ -239,24 +258,38 @@ a:hover {
 }
 
 .hero__content {
+  position: relative;
+  width: 100%;
   max-width: 640px;
+  align-self: flex-end;
+  padding: var(--space-lg) var(--space-xl);
+  padding-right: calc(var(--space-xl) + 56px + var(--space-sm));
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow:
+    0 1px 2px rgba(17, 17, 17, 0.04),
+    0 12px 40px rgba(17, 17, 17, 0.08);
+  isolation: isolate;
+  text-rendering: optimizeLegibility;
 }
 
-.hero__media {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hero__panel-brand {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  margin: 0;
+  z-index: 2;
 }
-.hero__media-img {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-  aspect-ratio: 1;
+.hero__panel-logo {
+  width: 56px;
+  height: 56px;
+  max-width: 56px;
+  flex-shrink: 0;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 12px 40px rgba(17, 17, 17, 0.12);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.06);
 }
 
 .hero__contact {
@@ -753,21 +786,7 @@ a:hover {
     padding-right: var(--space-lg);
   }
   .hero__bg {
-    background-position: center, center right;
-  }
-  .hero__inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2xl);
-  }
-  .hero__media {
-    order: 1;
-    flex: 0 0 38%;
-    justify-content: flex-end;
-  }
-  .hero__media-img {
-    max-width: min(100%, 320px);
+    background-position: center, left center;
   }
   .mentions__gallery {
     grid-template-columns: repeat(2, 1fr);
@@ -802,9 +821,6 @@ a:hover {
   }
   .section {
     padding: 5rem 0;
-  }
-  .hero__media-img {
-    max-width: min(100%, 360px);
   }
   .mentions__gallery {
     grid-template-columns: repeat(4, 1fr);
