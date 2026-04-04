@@ -196,15 +196,40 @@ a:hover {
 .hero__bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 85% 55% at 75% 15%, rgba(44, 82, 130, 0.07) 0%, transparent 52%),
-    radial-gradient(ellipse 60% 45% at 15% 85%, rgba(30, 58, 95, 0.05) 0%, transparent 48%),
-    linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
+  z-index: 0;
+  background-color: var(--color-surface);
+  background-image:
+    linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.97) 0%,
+      rgba(255, 255, 255, 0.9) 38%,
+      rgba(255, 255, 255, 0.55) 58%,
+      rgba(245, 246, 247, 0.35) 100%
+    ),
+    url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
+  background-size: cover, cover;
+  background-position: center, center right;
+  background-repeat: no-repeat;
   pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .hero__bg {
+    background-position: center, center center;
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(255, 255, 255, 0.88) 35%,
+        rgba(255, 255, 255, 0.72) 100%
+      ),
+      url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
+  }
 }
 
 .hero__inner {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
@@ -217,13 +242,21 @@ a:hover {
   max-width: 640px;
 }
 
-.hero__logo {
-  width: 140px;
+.hero__media {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero__media-img {
+  width: 100%;
+  max-width: 260px;
   height: auto;
-  max-height: 72px;
-  object-fit: contain;
-  margin-bottom: var(--space-md);
-  display: block;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 40px rgba(17, 17, 17, 0.12);
 }
 
 .hero__contact {
@@ -253,23 +286,6 @@ a:hover {
 .hero__wa:hover {
   background: #20bd5a;
   color: #fff;
-}
-
-.hero__media {
-  flex-shrink: 0;
-}
-.hero__img {
-  width: 100%;
-  max-width: 480px;
-  height: auto;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 12px 40px rgba(17, 17, 17, 0.08);
-}
-.hero__img--logo {
-  max-width: 100%;
-  background: var(--color-bg);
-  padding: var(--space-md);
 }
 
 .hero__tag {
@@ -651,20 +667,8 @@ a:hover {
   font-weight: 500;
 }
 
-.contacts__img {
-  display: block;
-  width: 100%;
-  max-width: 280px;
-  height: auto;
+.contacts__block--map .contacts__map-title {
   margin-top: var(--space-lg);
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  object-fit: cover;
-}
-
-.contacts__map {
-  margin-top: var(--space-2xl);
-  grid-column: 1 / -1;
 }
 .contacts__map-title {
   font-family: var(--font-display);
@@ -748,6 +752,9 @@ a:hover {
     padding-left: var(--space-lg);
     padding-right: var(--space-lg);
   }
+  .hero__bg {
+    background-position: center, center right;
+  }
   .hero__inner {
     flex-direction: row;
     align-items: center;
@@ -756,10 +763,11 @@ a:hover {
   }
   .hero__media {
     order: 1;
-    flex: 0 0 42%;
+    flex: 0 0 38%;
+    justify-content: flex-end;
   }
-  .hero__img {
-    max-width: 100%;
+  .hero__media-img {
+    max-width: min(100%, 320px);
   }
   .mentions__gallery {
     grid-template-columns: repeat(2, 1fr);
@@ -795,8 +803,8 @@ a:hover {
   .section {
     padding: 5rem 0;
   }
-  .hero__img {
-    max-width: 520px;
+  .hero__media-img {
+    max-width: min(100%, 360px);
   }
   .mentions__gallery {
     grid-template-columns: repeat(4, 1fr);
