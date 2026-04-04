@@ -161,11 +161,17 @@ a:hover {
   background: var(--color-bg);
   padding: var(--space-xl);
   padding-top: calc(52px + var(--space-md));
+  padding-bottom: var(--space-lg);
   transform: translateX(100%);
   transition: transform 0.3s ease;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   visibility: visible;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 .nav.is-open {
   transform: translateX(0);
@@ -179,6 +185,53 @@ a:hover {
   flex-direction: column;
   gap: var(--space-md);
   padding-top: var(--space-xl);
+  flex: 0 0 auto;
+}
+
+.nav__footer {
+  flex: 1 1 auto;
+  min-height: 0;
+  container-type: size;
+  container-name: nav-footer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg) var(--space-md);
+  padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0));
+}
+
+.nav__footer-circle {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  /* Fallback senza container queries: quasi tutto lo spazio possibile */
+  width: min(100%, 85vmin, 22rem);
+  aspect-ratio: 1;
+  max-height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px rgba(30, 58, 95, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@supports (width: 10cqmin) {
+  .nav__footer-circle {
+    width: min(100cqmin, 22rem);
+    height: min(100cqmin, 22rem);
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.nav__footer-mark {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
 }
 .nav__list li {
   display: block;
@@ -247,12 +300,6 @@ a:hover {
       ),
       url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
   }
-  .hero__content {
-    padding: var(--space-md) var(--space-lg);
-  }
-  .hero__panel-brand {
-    display: none;
-  }
 }
 
 .hero__inner {
@@ -282,6 +329,20 @@ a:hover {
     0 12px 40px rgba(17, 17, 17, 0.08);
   isolation: isolate;
   text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 639px) {
+  .hero__inner {
+    align-items: stretch;
+  }
+  .hero__content {
+    align-self: stretch;
+    max-width: none;
+    padding: var(--space-lg) var(--space-md);
+  }
+  .hero__panel-brand {
+    display: none;
+  }
 }
 
 .hero__panel-brand {
@@ -845,6 +906,7 @@ a:hover {
     bottom: auto;
     width: auto;
     height: auto;
+    min-height: 0;
     transform: none;
     background: none;
     padding: 0;
@@ -852,6 +914,10 @@ a:hover {
     z-index: auto;
     flex: 0 0 auto;
     min-width: 0;
+    display: block;
+  }
+  .nav__footer {
+    display: none;
   }
   .nav__list {
     flex-direction: row;
