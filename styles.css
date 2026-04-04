@@ -228,20 +228,11 @@ a:hover {
       ),
       url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
   }
-  .hero {
-    overflow: visible;
-  }
-  .hero__inner {
-    overflow: visible;
-  }
   .hero__content {
     padding: var(--space-md) var(--space-lg);
-    overflow: visible;
   }
   .hero__panel-brand {
-    top: -22px;
-    right: var(--space-md);
-    filter: drop-shadow(0 2px 8px rgba(17, 17, 17, 0.12));
+    display: none;
   }
 }
 
