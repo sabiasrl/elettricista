@@ -1018,6 +1018,43 @@ a:hover {
   }
 }
 
+/* ----- WhatsApp floating button ----- */
+.wa-float {
+  position: fixed;
+  right: var(--space-md);
+  bottom: calc(var(--space-md) + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  background: #25d366;
+  color: #ffffff;
+  line-height: 0;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition), background 0.2s ease;
+}
+.wa-float:hover {
+  color: #ffffff;
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55);
+}
+.wa-float:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+.wa-float__icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+  flex-shrink: 0;
+}
+
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1029,5 +1066,11 @@ a:hover {
   .nav,
   .nav-toggle span {
     transition: none;
+  }
+  .wa-float {
+    transition: none;
+  }
+  .wa-float:hover {
+    transform: none;
   }
 }
