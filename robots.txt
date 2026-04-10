@@ -1,8 +1,8 @@
-# https://www.elettricistaroccotammone.it/
+# https://elettricistaroccotammone.it/
 User-agent: *
 Allow: /
 
 # Risorse statiche
 Allow: /assets/
 
-Sitemap: https://www.elettricistaroccotammone.it/sitemap.xml
+Sitemap: https://elettricistaroccotammone.it/sitemap.xml

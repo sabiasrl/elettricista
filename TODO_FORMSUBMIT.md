@@ -11,7 +11,7 @@ Passi da completare per attivare e configurare l’invio del form **Richiedi un 
 
   **Attuale:**
   ```html
-  action="https://formsubmit.co/info@lelettricistaditammonerocco.it"
+  action="https://formsubmit.co/info@elettricistaroccotammone.it"
   ```
 
   **Esempio:** se la tua email è `rocco.tammone@esempio.it`:
@@ -38,7 +38,7 @@ Passi da completare per attivare e configurare l’invio del form **Richiedi un 
   <input type="hidden" name="_next" value="https://TUODOMINIO.it/#grazie">
   ```
 
-  Sostituisci `https://TUODOMINIO.it` con l’URL reale del sito (es. `https://www.lelettricistaditammonerocco.it`).
+  Sostituisci `https://TUODOMINIO.it` con l’URL reale del sito (es. `https://elettricistaroccotammone.it`).
 - Se vuoi mostrare un messaggio “Grazie, ti contatteremo” sulla stessa pagina quando l’URL contiene `#grazie`, si può aggiungere in pagina un box che viene mostrato in quel caso (tramite CSS/JS).
 
 ---
