@@ -2,21 +2,70 @@
    L'Elettricista di Rocco Tammone — Mobile-first
    ============================================ */
 
-/* Logo neutrals + copper; primary = sober electric blue (industry / impianti) */
+/* IBM Plex Sans — file locali (subset latin); non dipende da Google Fonts */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-sans-latin-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('assets/fonts/ibm-plex-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Palette ispirata a siti corporate tipo GE: blu istituzionale, navy titoli, grigi freddi */
 :root {
   --color-bg: #ffffff;
-  --color-surface: #f5f6f7;
-  --color-surface-alt: #eef0f2;
-  --color-text: #111111;
-  --color-text-muted: #4a5568;
-  --color-accent: #2c5282;
-  --color-accent-dim: #1e3a5f;
-  --color-accent-soft: #4a6fa5;
-  --color-accent-green: #2d6a4f;
-  --color-accent-green-dim: #1b4332;
-  --color-copper: #9c5c2e;
-  --color-border: #d1d3d4;
+  --color-surface: #f0f3f7;
+  --color-surface-alt: #e8ecf2;
+  --color-text: #1f2937;
+  --color-text-muted: #5c6678;
+  --color-navy: #002855;
+  --color-accent: #005eb8;
+  --color-accent-dim: #004a93;
+  --color-accent-soft: #3b7cbc;
+  --color-accent-green: #1e5f4a;
+  --color-accent-green-dim: #134032;
+  --color-electric-blue: #005eb8;
+  --color-border: #d4dae3;
   --color-on-accent: #ffffff;
+  --color-header-rule: #005eb8;
   --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
   --space-xs: 0.5rem;
@@ -25,8 +74,8 @@
   --space-lg: 2rem;
   --space-xl: 3rem;
   --space-2xl: 4rem;
-  --radius: 8px;
-  --radius-lg: 12px;
+  --radius: 4px;
+  --radius-lg: 6px;
   --transition: 0.2s ease;
 }
 
@@ -38,6 +87,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
 }
 
 body {
@@ -65,7 +115,7 @@ a:hover {
   color: var(--color-accent-dim);
 }
 
-/* ----- Header ----- */
+/* ----- Header (fascia blu sotto, stile corporate) ----- */
 .header {
   position: fixed;
   top: 0;
@@ -73,8 +123,8 @@ a:hover {
   right: 0;
   z-index: 100;
   background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  border-bottom: 3px solid var(--color-header-rule);
+  box-shadow: 0 2px 12px rgba(0, 40, 85, 0.06);
 }
 
 .header__inner {
@@ -83,7 +133,7 @@ a:hover {
   justify-content: space-between;
   gap: var(--space-md);
   padding: var(--space-sm) var(--space-md);
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
   position: relative;
 }
@@ -159,9 +209,9 @@ a:hover {
   bottom: 0;
   z-index: 50;
   background: var(--color-bg);
-  padding: var(--space-xl);
-  padding-top: calc(52px + var(--space-md));
-  padding-bottom: var(--space-lg);
+  padding: var(--space-lg);
+  padding-top: calc(52px + var(--space-sm));
+  padding-bottom: var(--space-md);
   transform: translateX(100%);
   transition: transform 0.3s ease;
   overflow-y: auto;
@@ -247,6 +297,23 @@ a:hover {
   color: var(--color-accent);
 }
 
+@media (max-width: 639px) {
+  .nav__list {
+    gap: var(--space-sm);
+    padding-top: var(--space-lg);
+  }
+  .nav__list a {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-navy);
+    padding: 0.4rem 0;
+  }
+  .nav__list a:hover {
+    color: var(--color-accent);
+  }
+}
+
 /* Nessuna linea / separatore sotto Home (mobile) */
 .nav .nav__list .nav__item--mobile-only,
 .nav .nav__list .nav__item--mobile-only a {
@@ -262,7 +329,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: calc(60px + var(--space-xl)) var(--space-md) var(--space-xl);
+  /* Padding orizzontale solo sul contenuto: lo sfondo resta edge-to-edge */
+  padding: calc(60px + var(--space-xl)) 0 var(--space-xl);
 }
 
 .hero__bg {
@@ -270,35 +338,37 @@ a:hover {
   inset: 0;
   z-index: 0;
   background-color: var(--color-surface);
-  /* Left: foto visibile; destra: velatura bianca per il pannello */
+  /* cover = tutta la larghezza dispositivo senza bande; velo verso destra per offuscare */
   background-image:
     linear-gradient(
-      105deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.22) 22%,
-      rgba(255, 255, 255, 0.55) 42%,
-      rgba(255, 255, 255, 0.92) 62%,
-      rgba(255, 255, 255, 1) 82%
+      100deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 32%,
+      rgba(248, 250, 252, 0.45) 48%,
+      rgba(255, 255, 255, 0.88) 66%,
+      rgba(255, 255, 255, 0.97) 100%
     ),
-    url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
+    url('assets/bru-no-switchgear-2069759_1920.png');
   background-size: cover, cover;
-  background-position: center, left center;
+  background-position: center, center;
   background-repeat: no-repeat;
   pointer-events: none;
 }
 
 @media (max-width: 639px) {
   .hero__bg {
-    background-position: center, left center;
     background-image:
       linear-gradient(
-        95deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.4) 38%,
-        rgba(255, 255, 255, 0.94) 78%,
-        rgba(255, 255, 255, 1) 100%
+        115deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.12) 38%,
+        rgba(255, 255, 255, 0.9) 72%,
+        rgba(255, 255, 255, 0.98) 100%
       ),
-      url('assets/male-electrician-working-electrical-panel-male-electrician-overalls.jpg');
+      url('assets/bru-no-switchgear-2069759_1920.png');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat;
   }
 }
 
@@ -309,9 +379,11 @@ a:hover {
   flex-direction: column;
   align-items: flex-end;
   gap: var(--space-xl);
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
   width: 100%;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
 }
 
 .hero__content {
@@ -325,8 +397,8 @@ a:hover {
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   box-shadow:
-    0 1px 2px rgba(17, 17, 17, 0.04),
-    0 12px 40px rgba(17, 17, 17, 0.08);
+    0 1px 0 rgba(0, 40, 85, 0.06),
+    0 16px 48px rgba(0, 40, 85, 0.08);
   isolation: isolate;
   text-rendering: optimizeLegibility;
 }
@@ -381,11 +453,22 @@ a:hover {
 .hero__wa {
   display: inline-flex;
   align-items: center;
+  gap: 0.45rem;
   padding: 0.35rem 0.75rem;
   background: #25d366;
   color: #fff;
   border-radius: var(--radius);
   font-weight: 500;
+  text-decoration: none;
+}
+.hero__wa-icon {
+  flex-shrink: 0;
+  width: 1.125em;
+  height: 1.125em;
+  margin-top: 1px;
+}
+.hero__wa-text {
+  line-height: 1.2;
 }
 .hero__wa:hover {
   background: #20bd5a;
@@ -393,11 +476,12 @@ a:hover {
 }
 
 .hero__tag {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--color-accent);
   margin: 0 0 var(--space-sm);
+  font-weight: 600;
 }
 
 .brand-name {
@@ -409,11 +493,12 @@ a:hover {
 
 .hero__title {
   font-family: var(--font-sans);
-  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-size: clamp(1.875rem, 5.2vw, 3rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.08;
   margin: 0 0 var(--space-md);
-  color: var(--color-text);
+  color: var(--color-navy);
+  letter-spacing: -0.02em;
 }
 .hero__title .brand-name {
   line-height: 1.12;
@@ -447,7 +532,7 @@ a:hover {
 .hero__scroll-line {
   width: 1px;
   height: 32px;
-  background: linear-gradient(to bottom, var(--color-accent-soft), transparent);
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
   border-radius: 1px;
   animation: scrollHint 2s ease-in-out infinite;
 }
@@ -461,11 +546,12 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.65rem;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
-  border-radius: var(--radius);
+  letter-spacing: 0.02em;
+  border-radius: 2px;
   border: 2px solid transparent;
   cursor: pointer;
   transition: background var(--transition), color var(--transition), border-color var(--transition);
@@ -482,8 +568,8 @@ a:hover {
 }
 .btn--outline {
   background: transparent;
-  color: var(--color-text);
-  border-color: var(--color-text);
+  color: var(--color-navy);
+  border-color: var(--color-navy);
 }
 .btn--outline:hover {
   border-color: var(--color-accent);
@@ -493,7 +579,7 @@ a:hover {
 /* ----- Container & sections ----- */
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 var(--space-md);
 }
@@ -502,18 +588,21 @@ a:hover {
   padding: var(--space-2xl) 0;
 }
 .section__tag {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
   color: var(--color-accent);
-  margin: 0 0 var(--space-xs);
+  margin: 0 0 var(--space-sm);
+  font-weight: 600;
 }
 .section__title {
   font-family: var(--font-sans);
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.625rem, 3.8vw, 2.5rem);
   font-weight: 700;
   margin: 0 0 var(--space-md);
-  color: var(--color-text);
+  color: var(--color-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 .section__lead {
   font-size: 1.0625rem;
@@ -545,22 +634,23 @@ a:hover {
 }
 
 .card {
-  background: var(--color-surface);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--color-accent);
   padding: var(--space-lg);
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 .card:hover {
-  border-color: rgba(44, 82, 130, 0.35);
-  box-shadow: 0 8px 28px rgba(30, 58, 95, 0.08);
+  border-color: rgba(0, 94, 184, 0.45);
+  box-shadow: 0 10px 32px rgba(0, 40, 85, 0.1);
 }
 
 .card__icon {
   width: 44px;
   height: 44px;
   margin-bottom: var(--space-md);
-  color: var(--color-accent);
+  color: var(--color-navy);
 }
 .card__icon svg {
   width: 100%;
@@ -570,7 +660,7 @@ a:hover {
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 var(--space-sm);
-  color: var(--color-text);
+  color: var(--color-navy);
 }
 .card__text {
   font-size: 0.9375rem;
@@ -580,10 +670,10 @@ a:hover {
 }
 
 .services__extra {
-  background: var(--color-surface-alt);
+  background: var(--color-surface);
   border-radius: var(--radius);
   padding: var(--space-md);
-  border-left: 3px solid var(--color-accent);
+  border-left: 4px solid var(--color-accent);
 }
 .services__extra p {
   margin: 0;
@@ -591,34 +681,201 @@ a:hover {
   color: var(--color-text-muted);
 }
 
-/* ----- History ----- */
-.domotica {
-  background: var(--color-surface-alt);
+/* Sezioni: bande alternate (grigio / bianco) — mai due sezioni adiacenti uguali */
+/* Ordine pagina: domotica grigio → servizi bianco → storia grigio → lavori bianco → preventivo grigio → contatti bianco */
+.services {
+  background-color: var(--color-bg);
+  /* Metà destra banner + gradiente invertito (dal basso verso l’alto): stile che prima era su domotica */
+  background-image:
+    linear-gradient(to top, rgba(0, 40, 85, 0.06) 0%, transparent 300px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.93) 200px, var(--color-bg) 400px),
+    url('assets/smart-home-tech-banner.png');
+  background-size: 100% 100%, 100% 100%, 200% auto;
+  background-position: center bottom, center bottom, right bottom;
+  background-repeat: no-repeat;
 }
-.domotica__visual {
+.history {
   background: var(--color-surface);
 }
-.domotica__img--hero {
-  max-height: 360px;
+.mentions {
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.contacts {
+  background: var(--color-bg);
+}
+
+/* ----- History ----- */
+.domotica {
+  background-color: var(--color-surface);
+  /* Stesso asset che prima era sul hero: banner tech a tutta larghezza + velature */
+  background-image:
+    linear-gradient(to bottom, rgba(0, 94, 184, 0.09) 0%, transparent 320px),
+    linear-gradient(to bottom, rgba(240, 243, 247, 0.2) 0%, rgba(240, 243, 247, 0.94) 200px, var(--color-surface) 420px),
+    url('assets/smart-home-tech-banner.png');
+  background-size: 100% 100%, 100% 100%, cover;
+  background-position: center top, center top, center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 639px) {
+  .domotica {
+    background-image:
+      linear-gradient(to bottom, rgba(0, 94, 184, 0.1) 0%, transparent 240px),
+      linear-gradient(to bottom, rgba(240, 243, 247, 0.28) 0%, rgba(240, 243, 247, 0.96) 150px, var(--color-surface) 340px),
+      url('assets/smart-home-tech-banner.png');
+    background-size: 100% 100%, 100% 100%, cover;
+    background-position: center top, center top, center;
+  }
+}
+
+/* Carousel + galleria affiancati alle card (layout a griglia su desktop) */
+.domotica__mix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+.domotica__mix-media {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+  /* Una sola card a colonna: carousel + galleria dentro lo stesso pannello */
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--color-accent);
+  padding: var(--space-md);
+  box-shadow: 0 4px 24px rgba(0, 40, 85, 0.08);
+}
+.domotica__mix-media .services__visual {
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+}
+.domotica__mix-media .domotica__carousel {
+  border: none;
+  border-radius: var(--radius);
+}
+.domotica__mix .domotica__gallery {
+  margin-bottom: 0;
+  padding-top: var(--space-md);
+  margin-top: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 960px) {
+  .domotica__mix {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(0, 1.15fr);
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  .domotica__mix-media {
+    position: sticky;
+    top: 5.5rem;
+  }
+  /* Due colonne di card accanto alle immagini (override della griglia servizi a 3 col) */
+  .domotica__mix .domotica__grid.services__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+    margin-bottom: 0;
+  }
+}
+
+.domotica__visual {
+  background: transparent;
+}
+.domotica__carousel-wrap {
+  border: 0;
+  overflow: visible;
+}
+.domotica__carousel {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  /* Altezza solo da 16:9 — niente min-height sui figli in-flow o il box diventa quadrato su mobile stretto */
+  aspect-ratio: 16 / 9;
+}
+.domotica__carousel-slides {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.domotica__carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.domotica__carousel-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+.domotica__carousel-dots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  z-index: 2;
+  padding: 0 var(--space-sm);
+  pointer-events: none;
+}
+.domotica__carousel-dots .domotica__carousel-dot {
+  pointer-events: auto;
+}
+.domotica__carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 94, 184, 0.28);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+.domotica__carousel-dot:hover {
+  background: rgba(0, 94, 184, 0.5);
+}
+.domotica__carousel-dot.is-active {
+  background: var(--color-electric-blue);
+  transform: scale(1.15);
 }
 .domotica__gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
   margin-bottom: var(--space-xl);
 }
 .domotica__gallery-img {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 1;
+  height: auto;
   object-fit: cover;
+  object-position: center;
   display: block;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  border-radius: 0;
+  border: 0;
+  transition: opacity var(--transition);
 }
 .domotica__gallery-img:hover {
-  border-color: rgba(44, 82, 130, 0.35);
-  box-shadow: 0 8px 28px rgba(30, 58, 95, 0.08);
+  opacity: 0.92;
 }
 .domotica__grid {
   margin-bottom: 0;
@@ -630,21 +887,8 @@ a:hover {
 
 @media (max-width: 639px) {
   .domotica__gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .domotica__gallery-img {
-    height: 220px;
-  }
-}
-
-@media (min-width: 640px) and (max-width: 959px) {
-  .domotica__gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.history {
-  background: var(--color-surface);
 }
 
 .history__content {
@@ -689,17 +933,18 @@ a:hover {
   justify-content: center;
   padding: var(--space-xl);
   background: var(--color-bg);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-accent);
+  border-top: 4px solid var(--color-accent);
   text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 40, 85, 0.06);
 }
 .history__years {
   font-family: var(--font-sans);
   font-size: 3rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-accent);
+  letter-spacing: -0.03em;
+  color: var(--color-navy);
   line-height: 1;
   display: block;
 }
@@ -709,48 +954,7 @@ a:hover {
   margin-top: var(--space-xs);
 }
 
-/* ----- Mentions ----- */
-.mentions__gallery {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  margin-bottom: var(--space-xl);
-}
-.mentions__strip {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
-}
-.mentions__gallery .mentions__img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  min-height: 140px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Mobile: griglia 2×4 stile Instagram (bordo minimo, celle quadrate) */
-@media (max-width: 639px) {
-  .mentions__gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3px;
-  }
-  .mentions__strip {
-    display: contents;
-  }
-  .mentions__gallery .mentions__img {
-    aspect-ratio: 1;
-    min-height: 0;
-    border-radius: 0;
-    border: 0;
-  }
-}
-
+/* ----- Mentions — solo citazioni ----- */
 .mentions__grid {
   display: grid;
   gap: var(--space-lg);
@@ -761,7 +965,7 @@ a:hover {
   padding: var(--space-lg);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-copper);
+  border-left: 3px solid var(--color-electric-blue);
   border-radius: var(--radius-lg);
 }
 .mention__text {
@@ -816,7 +1020,7 @@ a:hover {
 .quote-form__row textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.18);
+  box-shadow: 0 0 0 2px rgba(0, 94, 184, 0.2);
 }
 .quote-form__row--full {
   grid-column: 1 / -1;
@@ -836,12 +1040,17 @@ a:hover {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 var(--space-md);
-  color: var(--color-text);
+  color: var(--color-navy);
 }
 .contacts__block p {
   font-size: 0.9375rem;
   color: var(--color-text-muted);
   margin: 0 0 var(--space-sm);
+}
+.contacts__intro {
+  margin: 0 0 var(--space-md);
+  line-height: 1.55;
+  max-width: 36rem;
 }
 .contacts__zones {
   margin-top: var(--space-md);
@@ -853,20 +1062,52 @@ a:hover {
   font-weight: 500;
 }
 
+.contacts__tel-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.contacts__wa-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: transparent;
+  color: var(--color-accent);
+  border-radius: 0;
+  line-height: 0;
+  flex-shrink: 0;
+  transition: color var(--transition), opacity var(--transition);
+}
+.contacts__wa-round:hover {
+  color: var(--color-accent-dim);
+}
+.contacts__wa-round:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.contacts__wa-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
 .contacts__block--map .contacts__map-title {
-  margin-top: var(--space-lg);
+  margin-top: 0;
 }
 .contacts__map-title {
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 var(--space-md);
-  color: var(--color-text);
+  color: var(--color-navy);
 }
 .contacts__map-wrap {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--color-border);
   background: var(--color-surface-alt);
@@ -880,20 +1121,22 @@ a:hover {
   height: 100%;
   border: 0;
 }
-/* ----- Footer ----- */
+/* ----- Footer (navy corporate) ----- */
 .footer {
-  padding: var(--space-lg) 0;
-  border-top: 3px solid var(--color-copper);
-  background: #111111;
+  padding: var(--space-xl) 0;
+  border-top: 3px solid var(--color-accent);
+  background: linear-gradient(180deg, #0a1628 0%, #061018 100%);
 }
 .footer__copy {
   font-size: 0.8125rem;
-  color: #c8c8c8;
+  color: #b8c2d0;
   margin: 0;
   text-align: center;
+  line-height: 1.65;
+  letter-spacing: 0.02em;
 }
 .footer a {
-  color: #93c5fd;
+  color: #7ec8ff;
 }
 .footer a:hover {
   color: #ffffff;
@@ -942,32 +1185,24 @@ a:hover {
   }
   .nav__list a {
     font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-navy);
     padding: var(--space-sm) 0;
+  }
+  .nav__list a:hover {
+    color: var(--color-accent);
   }
   .header__inner {
     padding: var(--space-md) var(--space-lg);
     flex-wrap: nowrap;
   }
-  .hero {
+  .hero__inner {
     padding-left: var(--space-lg);
     padding-right: var(--space-lg);
   }
   .hero__bg {
-    background-position: center, left center;
-  }
-  .mentions__gallery {
-    gap: var(--space-lg);
-  }
-  .mentions__strip {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
-  }
-  .mentions__gallery .mentions__img {
-    aspect-ratio: auto;
-    height: 220px;
-    min-height: 0;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
+    background-position: center, center;
   }
   .services__grid {
     grid-template-columns: repeat(2, 1fr);
@@ -996,12 +1231,6 @@ a:hover {
   }
   .section {
     padding: 5rem 0;
-  }
-  .mentions__strip {
-    gap: var(--space-lg);
-  }
-  .mentions__gallery .mentions__img {
-    height: 200px;
   }
   .services__grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1072,5 +1301,8 @@ a:hover {
   }
   .wa-float:hover {
     transform: none;
+  }
+  .domotica__carousel-slide {
+    transition: none;
   }
 }
