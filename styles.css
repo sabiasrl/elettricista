@@ -344,38 +344,12 @@ a:hover {
   inset: 0;
   z-index: 0;
   background-color: var(--color-surface);
-  /* cover = tutta la larghezza dispositivo senza bande; velo verso destra per offuscare */
-  background-image:
-    linear-gradient(
-      100deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 32%,
-      rgba(248, 250, 252, 0.45) 48%,
-      rgba(255, 255, 255, 0.88) 66%,
-      rgba(255, 255, 255, 0.97) 100%
-    ),
-    url('assets/bru-no-switchgear-2069759_1920.png');
-  background-size: cover, cover;
-  background-position: center, center;
+  /* Stesso asset di prima sulla sezione Domotica: solo foto, nessun velo (il pannello testo resta bianco pieno) */
+  background-image: url('assets/smart-home-tech-banner.png');
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   pointer-events: none;
-}
-
-@media (max-width: 639px) {
-  .hero__bg {
-    background-image:
-      linear-gradient(
-        115deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.12) 38%,
-        rgba(255, 255, 255, 0.9) 72%,
-        rgba(255, 255, 255, 0.98) 100%
-      ),
-      url('assets/bru-no-switchgear-2069759_1920.png');
-    background-size: cover, cover;
-    background-position: center, center;
-    background-repeat: no-repeat;
-  }
 }
 
 .hero__inner {
@@ -618,21 +592,6 @@ a:hover {
 }
 
 /* ----- Services ----- */
-.services__visual {
-  width: 100%;
-  margin-bottom: var(--space-xl);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-.services__img {
-  width: 100%;
-  height: auto;
-  max-height: 320px;
-  object-fit: cover;
-  display: block;
-}
-
 .services__grid {
   display: grid;
   gap: var(--space-lg);
@@ -691,14 +650,58 @@ a:hover {
 /* Ordine pagina: domotica grigio → servizi bianco → storia grigio → lavori bianco → preventivo grigio → contatti bianco */
 .services {
   background-color: var(--color-bg);
-  /* Metà destra banner + gradiente invertito (dal basso verso l’alto): stile che prima era su domotica */
+  /* Altra foto switchgear; velo quasi opaco in alto per titolo/lead; foto visibile sotto + attenuazione a destra */
   background-image:
-    linear-gradient(to top, rgba(0, 40, 85, 0.06) 0%, transparent 300px),
-    linear-gradient(to top, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.93) 200px, var(--color-bg) 400px),
-    url('assets/smart-home-tech-banner.png');
-  background-size: 100% 100%, 100% 100%, 200% auto;
-  background-position: center bottom, center bottom, right bottom;
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.98) 9rem,
+      rgba(255, 255, 255, 0.94) 14rem,
+      rgba(255, 255, 255, 0.72) 22rem,
+      rgba(255, 255, 255, 0.35) 100%
+    ),
+    linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.35) 38%,
+      transparent 58%
+    ),
+    url('assets/bru-no-switchgear-2069791_1920.png');
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
   background-repeat: no-repeat;
+}
+
+.services .section__tag,
+.services .section__title,
+.services .section__lead {
+  position: relative;
+  z-index: 1;
+}
+.services .section__lead {
+  color: var(--color-text);
+}
+
+@media (max-width: 639px) {
+  .services {
+    background-image:
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.97) 11rem,
+        rgba(255, 255, 255, 0.88) 17rem,
+        rgba(255, 255, 255, 0.4) 100%
+      ),
+      linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 255, 255, 0.4) 42%,
+        transparent 62%
+      ),
+      url('assets/bru-no-switchgear-2069791_1920.png');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+  }
 }
 .history {
   background: var(--color-surface);
@@ -714,26 +717,7 @@ a:hover {
 
 /* ----- History ----- */
 .domotica {
-  background-color: var(--color-surface);
-  /* Stesso asset che prima era sul hero: banner tech a tutta larghezza + velature */
-  background-image:
-    linear-gradient(to bottom, rgba(0, 94, 184, 0.09) 0%, transparent 320px),
-    linear-gradient(to bottom, rgba(240, 243, 247, 0.2) 0%, rgba(240, 243, 247, 0.94) 200px, var(--color-surface) 420px),
-    url('assets/smart-home-tech-banner.png');
-  background-size: 100% 100%, 100% 100%, cover;
-  background-position: center top, center top, center;
-  background-repeat: no-repeat;
-}
-
-@media (max-width: 639px) {
-  .domotica {
-    background-image:
-      linear-gradient(to bottom, rgba(0, 94, 184, 0.1) 0%, transparent 240px),
-      linear-gradient(to bottom, rgba(240, 243, 247, 0.28) 0%, rgba(240, 243, 247, 0.96) 150px, var(--color-surface) 340px),
-      url('assets/smart-home-tech-banner.png');
-    background-size: 100% 100%, 100% 100%, cover;
-    background-position: center top, center top, center;
-  }
+  background: var(--color-surface);
 }
 
 /* Carousel + galleria affiancati alle card (layout a griglia su desktop) */
@@ -756,22 +740,15 @@ a:hover {
   padding: var(--space-md);
   box-shadow: 0 4px 24px rgba(0, 40, 85, 0.08);
 }
-.domotica__mix-media .services__visual {
-  margin-bottom: 0;
-  border: none;
-  border-radius: 0;
-  overflow: visible;
-  background: transparent;
-}
 .domotica__mix-media .domotica__carousel {
   border: none;
   border-radius: var(--radius);
 }
 .domotica__mix .domotica__gallery {
   margin-bottom: 0;
-  padding-top: var(--space-md);
+  padding-top: 0;
   margin-top: 0;
-  border-top: 1px solid var(--color-border);
+  border-top: none;
 }
 
 @media (min-width: 960px) {
@@ -868,6 +845,17 @@ a:hover {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 3px;
   margin-bottom: var(--space-xl);
+}
+.domotica__gallery-feature {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
 }
 .domotica__gallery-img {
   width: 100%;
@@ -1208,7 +1196,7 @@ a:hover {
     padding-right: var(--space-lg);
   }
   .hero__bg {
-    background-position: center, center;
+    background-position: center;
   }
   .services__grid {
     grid-template-columns: repeat(2, 1fr);
