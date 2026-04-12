@@ -344,10 +344,9 @@ a:hover {
   inset: 0;
   z-index: 0;
   background-color: var(--color-surface);
-  /* Stesso asset di prima sulla sezione Domotica: solo foto, nessun velo (il pannello testo resta bianco pieno) */
-  background-image: url('assets/smart-home-tech-banner.png');
+  background-image: url('assets/hero-domotica-smart-home-bg.png');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   pointer-events: none;
 }
@@ -720,6 +719,130 @@ a:hover {
   background: var(--color-surface);
 }
 
+/* Showcase dentro mix-media: stessa card, striscia unica (come una sola immagine) */
+.domotica__mix-media .domotica__showcase-strip {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  margin-bottom: var(--space-md);
+}
+.domotica__showcase-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+}
+.domotica__showcase-flank {
+  margin: 0;
+  min-width: 0;
+}
+.domotica__showcase-flank-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+}
+.domotica__mix-media .domotica__showcase-strip .domotica__showcase-flank-img {
+  border-radius: 0;
+  border: 0;
+}
+.domotica__mix-media .domotica__showcase-strip .domotica__showcase-carousel-wrap {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.domotica__showcase-carousel-wrap {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.domotica__showcase-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  aspect-ratio: 16 / 9;
+}
+.domotica__mix-media .domotica__showcase-strip .domotica__showcase-carousel {
+  border-radius: 0;
+  border: 0;
+}
+.domotica__showcase-slides {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.domotica__showcase-slides .domotica__showcase-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.domotica__showcase-slides .domotica__showcase-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+.domotica__showcase-dots {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  z-index: 2;
+  padding: 0 var(--space-sm);
+  pointer-events: none;
+}
+.domotica__showcase-dots .domotica__showcase-dot {
+  pointer-events: auto;
+}
+.domotica__showcase-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(0, 40, 85, 0.2);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+.domotica__showcase-dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+.domotica__showcase-dot.is-active {
+  background: var(--color-electric-blue);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transform: scale(1.12);
+}
+
+@media (min-width: 960px) {
+  .domotica__showcase-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr) minmax(0, 0.95fr);
+    gap: 0;
+    align-items: stretch;
+  }
+  .domotica__mix-media .domotica__showcase-strip .domotica__showcase-carousel-wrap {
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+  }
+}
+
 /* Carousel + galleria affiancati alle card (layout a griglia su desktop) */
 .domotica__mix {
   display: flex;
@@ -801,7 +924,6 @@ a:hover {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.45s ease;
 }
 .domotica__carousel-slide.is-active {
   opacity: 1;
@@ -841,34 +963,38 @@ a:hover {
   transform: scale(1.15);
 }
 .domotica__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+.domotica__gallery .domotica__showcase-carousel-wrap {
+  width: 100%;
+  min-width: 0;
+}
+.domotica__gallery .domotica__showcase-carousel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+.domotica__gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 3px;
-  margin-bottom: var(--space-xl);
-}
-.domotica__gallery-feature {
-  grid-column: 1 / -1;
-  width: 100%;
-  height: auto;
-  max-height: 320px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
   border-radius: var(--radius-lg);
+  overflow: hidden;
   border: 1px solid var(--color-border);
 }
-.domotica__gallery-img {
+.domotica__gallery-cell {
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 16 / 9;
   height: auto;
   object-fit: cover;
   object-position: center;
   display: block;
-  border-radius: 0;
-  border: 0;
   transition: opacity var(--transition);
 }
-.domotica__gallery-img:hover {
+.domotica__gallery-cell:hover {
   opacity: 0.92;
 }
 .domotica__grid {
@@ -877,12 +1003,6 @@ a:hover {
 .domotica__cta {
   margin: var(--space-xl) 0 0;
   text-align: center;
-}
-
-@media (max-width: 639px) {
-  .domotica__gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 .history__content {
@@ -1196,7 +1316,7 @@ a:hover {
     padding-right: var(--space-lg);
   }
   .hero__bg {
-    background-position: center;
+    background-position: center top;
   }
   .services__grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1295,8 +1415,5 @@ a:hover {
   }
   .wa-float:hover {
     transform: none;
-  }
-  .domotica__carousel-slide {
-    transition: none;
   }
 }

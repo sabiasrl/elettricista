@@ -64,6 +64,69 @@
     }
   }
 
+  function initDomoticaShowcaseCarousel() {
+    var root = document.querySelector('[data-domotica-showcase-carousel]');
+    if (!root) return;
+
+    var slides = root.querySelectorAll('[data-showcase-slide]');
+    var dotsWrap = root.querySelector('.domotica__showcase-dots');
+    if (!slides.length || !dotsWrap) return;
+
+    var i = 0;
+    var timer;
+    var intervalMs = 2200;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function show(index) {
+      i = (index + slides.length) % slides.length;
+      slides.forEach(function (el, j) {
+        el.classList.toggle('is-active', j === i);
+      });
+      var dots = dotsWrap.querySelectorAll('.domotica__showcase-dot');
+      dots.forEach(function (d, j) {
+        d.classList.toggle('is-active', j === i);
+        d.setAttribute('aria-current', j === i ? 'true' : 'false');
+      });
+    }
+
+    slides.forEach(function (_, j) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'domotica__showcase-dot' + (j === 0 ? ' is-active' : '');
+      b.setAttribute('aria-label', 'Vai alla slide ' + (j + 1) + ' di ' + slides.length);
+      if (j === 0) b.setAttribute('aria-current', 'true');
+      b.addEventListener('click', function () {
+        show(j);
+        restart();
+      });
+      dotsWrap.appendChild(b);
+    });
+
+    function tick() {
+      show(i + 1);
+    }
+
+    function restart() {
+      if (timer) clearInterval(timer);
+      if (!reducedMotion && slides.length > 1) {
+        timer = setInterval(tick, intervalMs);
+      }
+    }
+
+    restart();
+
+    var mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function onMotionPrefChange(e) {
+      reducedMotion = e.matches;
+      restart();
+    }
+    if (mql.addEventListener) {
+      mql.addEventListener('change', onMotionPrefChange);
+    } else if (mql.addListener) {
+      mql.addListener(onMotionPrefChange);
+    }
+  }
+
   function initNav() {
     var navToggle = document.querySelector('.nav-toggle');
     var nav = document.querySelector('.nav');
@@ -107,6 +170,7 @@
   function boot() {
     initNav();
     initDomoticaCarousel();
+    initDomoticaShowcaseCarousel();
   }
 
   if (document.readyState === 'loading') {
