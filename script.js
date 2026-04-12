@@ -127,6 +127,53 @@
     }
   }
 
+  function initQuoteFormMailto() {
+    var form = document.querySelector('.quote-form');
+    if (!form) return;
+
+    var to = form.getAttribute('data-mail-to') || '';
+    var subject = form.getAttribute('data-mail-subject') || 'Richiesta preventivo';
+    if (!to) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var nameEl = form.querySelector('#name');
+      var emailEl = form.querySelector('#email');
+      var phoneEl = form.querySelector('#phone');
+      var typeEl = form.querySelector('#type');
+      var messageEl = form.querySelector('#message');
+
+      var name = (nameEl && nameEl.value) ? nameEl.value.trim() : '';
+      var email = (emailEl && emailEl.value) ? emailEl.value.trim() : '';
+      var phone = (phoneEl && phoneEl.value) ? phoneEl.value.trim() : '';
+      var message = (messageEl && messageEl.value) ? messageEl.value.trim() : '';
+
+      var typeLabel = '(non indicato)';
+      if (typeEl && typeEl.options && typeEl.selectedIndex >= 0) {
+        var opt = typeEl.options[typeEl.selectedIndex];
+        if (opt && typeEl.value) typeLabel = opt.text;
+      }
+
+      var body = [
+        'Nome e cognome: ' + name,
+        'Email: ' + email,
+        'Telefono: ' + (phone || '(non indicato)'),
+        'Tipologia di committente: ' + typeLabel,
+        '',
+        'Descrivi l’intervento o la richiesta:',
+        message
+      ].join('\r\n');
+
+      var url = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = url;
+    });
+  }
+
   function initNav() {
     var navToggle = document.querySelector('.nav-toggle');
     var nav = document.querySelector('.nav');
@@ -169,6 +216,7 @@
 
   function boot() {
     initNav();
+    initQuoteFormMailto();
     initDomoticaCarousel();
     initDomoticaShowcaseCarousel();
   }
