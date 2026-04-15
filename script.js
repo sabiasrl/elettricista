@@ -64,6 +64,7 @@
     }
   }
 
+  /* Carousel showcase Domotica disattivato (markup commentato in index.html)
   function initDomoticaShowcaseCarousel() {
     var root = document.querySelector('[data-domotica-showcase-carousel]');
     if (!root) return;
@@ -126,6 +127,7 @@
       mql.addListener(onMotionPrefChange);
     }
   }
+  */
 
   function initQuoteFormMailto() {
     var form = document.querySelector('.quote-form');
@@ -373,7 +375,7 @@
     initNav();
     initQuoteFormMailto();
     initDomoticaCarousel();
-    initDomoticaShowcaseCarousel();
+    /* initDomoticaShowcaseCarousel(); — carousel disattivato */
     initBlogSpa();
   }
 

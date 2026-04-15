@@ -338,6 +338,10 @@ a:hover {
 }
 
 /* Nessuna linea / separatore sotto Home (mobile) */
+.nav a[aria-current='page'] {
+  font-weight: 700;
+  color: var(--color-electric-blue);
+}
 .nav .nav__list .nav__item--mobile-only,
 .nav .nav__list .nav__item--mobile-only a {
   border: 0;
@@ -1041,6 +1045,255 @@ a:hover {
   text-align: center;
 }
 
+/* Blocco “La guida domotica” — tratto visivo di riguardo (senza etichette testuali) */
+.domotica__guida-chapter {
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #c4a028 0%,
+    #e4d7a3 18%,
+    #9ec0eb 52%,
+    #0e67ce 78%,
+    #0a2544 100%
+  );
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(7, 26, 52, 0.05);
+  position: relative;
+}
+.domotica__guida-chapter::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 62%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.65;
+}
+.domotica__guida-chapter-inner {
+  border-radius: calc(var(--radius-lg) - 2px);
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(168deg, #fcfdff 0%, #f0f6fc 45%, #e8f0f9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  position: relative;
+  overflow: hidden;
+}
+.domotica__guida-chapter-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 55% at 100% 0%, rgba(14, 103, 206, 0.11), transparent 58%);
+  pointer-events: none;
+}
+.domotica__guida-chapter-link {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--color-navy);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  line-height: 1.22;
+  transition: color var(--transition), transform var(--transition);
+}
+.domotica__guida-chapter-link:hover {
+  color: var(--color-electric-blue);
+}
+.domotica__guida-chapter-link:focus-visible {
+  outline: 2px solid var(--color-electric-blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .domotica__guida-chapter-link:hover {
+    transform: translateX(3px);
+  }
+}
+.domotica__guida-chapter-desc {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 42rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* Pagina guida-domotica.html — .section.page-guida evita che il padding-top venga sovrascritto da .section nelle media query */
+.section.page-guida {
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + var(--header-scroll-offset) + var(--space-lg)
+  );
+  padding-bottom: var(--space-2xl);
+}
+.page-guida__back {
+  margin: 0 0 var(--space-lg);
+}
+.page-guida__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-electric-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), color var(--transition);
+}
+.page-guida__back-link:hover {
+  border-bottom-color: rgba(14, 103, 206, 0.45);
+}
+.page-guida__back-link:focus-visible {
+  outline: 2px solid var(--color-electric-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.page-guida__header {
+  margin-bottom: 0;
+  max-width: 48rem;
+}
+.page-guida__header .section__title {
+  margin-bottom: var(--space-md);
+}
+.page-guida__intro {
+  margin-top: var(--space-xs);
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--color-electric-blue);
+  background: linear-gradient(90deg, rgba(14, 103, 206, 0.06) 0%, transparent 100%);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  padding-right: var(--space-sm);
+}
+.page-guida__intro .section__lead {
+  margin-bottom: 0;
+  max-width: 52rem;
+  line-height: 1.7;
+}
+.page-guida__header + .page-guida__toc {
+  margin-top: var(--space-xl);
+}
+.page-guida__toc {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.page-guida__toc-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-sm);
+}
+.page-guida__toc-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.page-guida__toc-list a {
+  color: var(--color-electric-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-guida__toc-list a:hover {
+  color: var(--color-accent-dim);
+}
+.page-guida .domotica-guida {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.page-guida .domotica-guida__item[id] {
+  scroll-margin-top: var(--header-scroll-offset);
+}
+.page-guida .domotica-guida__title {
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+}
+.page-guida__cta {
+  margin-top: var(--space-2xl);
+}
+.domotica-guida__text + .domotica-guida__text {
+  margin-top: var(--space-sm);
+}
+
+.domotica-guida {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+.domotica-guida__heading {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+.domotica-guida__intro {
+  margin: 0 0 var(--space-xl);
+  max-width: 65ch;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.domotica-guida__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: var(--space-lg);
+  align-items: start;
+  padding-top: var(--space-xl);
+  margin-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+.domotica-guida__item:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.domotica-guida__figure {
+  margin: 0;
+}
+.domotica-guida__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+.domotica-guida__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+.domotica-guida__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+@media (max-width: 768px) {
+  .domotica-guida__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
 .history__content {
   display: flex;
   flex-direction: column;
@@ -1656,6 +1909,12 @@ body.is-blog-reading #blog [data-blog-articles] {
   }
   .section {
     padding: 5rem 0;
+  }
+  .section.page-guida {
+    padding-top: calc(
+      env(safe-area-inset-top, 0px) + var(--header-scroll-offset) + var(--space-xl)
+    );
+    padding-bottom: 5rem;
   }
   .hero__content {
     max-width: 680px;
