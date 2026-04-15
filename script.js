@@ -223,6 +223,15 @@
     var articles = root.querySelectorAll('[data-blog-article]');
     var lastBlogSlug = null;
 
+    function scrollToInstantY(top) {
+      var y = Math.max(0, top);
+      try {
+        window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+      } catch (e) {
+        window.scrollTo(0, y);
+      }
+    }
+
     function openArticle(slug) {
       lastBlogSlug = slug;
       document.body.classList.add('is-blog-reading');
@@ -233,7 +242,7 @@
       });
       var target = document.getElementById('blog-articolo-' + slug);
       if (target) {
-        window.scrollTo(0, 0);
+        scrollToInstantY(0);
         var backBtn = target.querySelector('[data-blog-back]');
         if (backBtn) backBtn.focus({ preventScroll: true });
       }
@@ -256,7 +265,44 @@
           if (!card) return;
           var pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
           var y = card.getBoundingClientRect().top + window.pageYOffset - pad;
-          window.scrollTo(0, Math.max(0, y));
+          scrollToInstantY(y);
+        });
+      });
+    }
+
+    /** Indietro: chiude l’articolo, salta alla card senza animazione, aggiorna URL senza scroll del browser sull’hash. */
+    function goBackToBlogCard() {
+      var slug = lastBlogSlug;
+      closeArticle();
+      if (!slug) {
+        try {
+          history.replaceState(null, '', location.pathname + location.search + '#blog');
+        } catch (e) {
+          location.hash = '#blog';
+        }
+        return;
+      }
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          var card = document.getElementById('blog-card-' + slug);
+          var hash = '#blog-card-' + slug;
+          var newUrl = location.pathname + location.search + hash;
+          if (!card) {
+            try {
+              history.replaceState(null, '', newUrl);
+            } catch (e2) {
+              location.hash = hash;
+            }
+            return;
+          }
+          var pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+          var y = card.getBoundingClientRect().top + window.pageYOffset - pad;
+          scrollToInstantY(y);
+          try {
+            history.replaceState(null, '', newUrl);
+          } catch (e3) {
+            if (location.hash !== hash) location.hash = hash;
+          }
         });
       });
     }
@@ -284,7 +330,7 @@
       var back = e.target.closest('[data-blog-back]');
       if (back && root.contains(back)) {
         e.preventDefault();
-        location.hash = lastBlogSlug ? '#blog-card-' + lastBlogSlug : '#blog';
+        goBackToBlogCard();
         return;
       }
       var opener = e.target.closest('[data-blog-open]');
@@ -317,7 +363,7 @@
       if (e.key !== 'Escape') return;
       if (!document.body.classList.contains('is-blog-reading')) return;
       e.preventDefault();
-      location.hash = lastBlogSlug ? '#blog-card-' + lastBlogSlug : '#blog';
+      goBackToBlogCard();
     });
 
     syncFromHash();
