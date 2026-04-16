@@ -1111,6 +1111,7 @@ a:hover {
 
 /* Blocco “La guida domotica” — tratto visivo di riguardo (senza etichette testuali) */
 .domotica__guida-chapter {
+  display: block;
   width: 100%;
   min-width: 0;
   border-radius: var(--radius-lg);
@@ -1123,6 +1124,29 @@ a:hover {
     0 0 0 1px rgba(7, 26, 52, 0.06);
   position: relative;
   isolation: isolate;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.domotica__guida-chapter:hover {
+  box-shadow:
+    0 20px 48px rgba(7, 26, 52, 0.22),
+    0 0 0 1px rgba(7, 26, 52, 0.08);
+}
+/* Stesso linguaggio del CTA primario: anello accent, alone blu, leggero sollevamento */
+.domotica__guida-chapter:focus:not(:focus-visible) {
+  outline: none;
+}
+.domotica__guida-chapter:focus-visible {
+  outline: none;
+  box-shadow:
+    0 16px 40px rgba(7, 26, 52, 0.18),
+    0 0 0 1px rgba(7, 26, 52, 0.06),
+    0 0 0 2px var(--color-bg),
+    0 0 0 4px var(--color-accent),
+    0 14px 36px rgba(14, 103, 206, 0.32);
+  transform: translateY(-1px);
 }
 .domotica__guida-chapter::after {
   content: "";
@@ -1183,27 +1207,21 @@ a:hover {
   color: #9f7600;
   filter: drop-shadow(0 0 2px rgba(191, 155, 37, 0.45));
 }
-.domotica__guida-chapter-link {
+.domotica__guida-chapter-heading {
   position: relative;
   z-index: 1;
   font-size: clamp(1.22rem, 2.5vw, 1.52rem);
   font-weight: 700;
   font-family: var(--font-display);
   color: var(--color-navy);
-  text-decoration: none;
   letter-spacing: -0.028em;
   line-height: 1.22;
   margin: 0;
   transition: color var(--transition), text-shadow var(--transition);
 }
-.domotica__guida-chapter-link:hover {
+.domotica__guida-chapter:hover .domotica__guida-chapter-heading {
   color: var(--color-electric-blue);
   text-shadow: 0 0 12px rgba(14, 103, 206, 0.18);
-}
-.domotica__guida-chapter-link:focus-visible {
-  outline: 2px solid var(--color-electric-blue);
-  outline-offset: 3px;
-  border-radius: 4px;
 }
 .domotica__guida-chapter-desc {
   position: relative;
